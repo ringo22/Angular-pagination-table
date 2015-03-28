@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+
+  .container
+    .row
+      .col-lg-8
+        .my-controller(ng-controller="MyController")
+          h1 Tasty Paginated Menu
+
+          small this is in "MyController"
+
+          .row
+            .col-xs-4
+              h3 Meals Page: {{ currentPage }}
+
+            .col-xs-4
+              label(for="search")
+              	Search
+              input(ng-model="q" id="search" class="form-control" placeholder="Filter text")
+
+            .col-xs-4
+              label(for="search"
+              	items per page:
+              input(type="number" min="1" max="100" class="form-control" ng-model="pageSize")
+
+          br
+
+          .panel panel-default
+            .panel-body
+
+              ul
+                li(dir-paginate="meal in meals | filter:q | itemsPerPage: pageSize" current-page="currentPage")
+                	{{ meal }}
+
+        .other-controller(ng-controller="OtherController")
+          small this is in "OtherController"
+
+          .text-center
+          	div(dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html)
