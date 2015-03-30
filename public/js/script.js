@@ -8,6 +8,8 @@ function MyController($scope) {
   $scope.pageSize = 10;
   $scope.meals = [];
 
+  $scope.hello = 'Rodrigo Raya';
+
   var dishes = [
     'noodles',
     'sausage',
