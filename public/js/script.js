@@ -1,74 +1,95 @@
 // Code goes here
-
 var myApp = angular.module('myApp', ['angularUtils.directives.dirPagination']);
 
 function MyController($scope) {
-
   $scope.currentPage = 1;
   $scope.pageSize = 10;
-  $scope.meals = [];
+  $scope.users = [];
 
   $scope.hello = 'Rodrigo Raya';
 
-  var dishes = [
-    'noodles',
-    'sausage',
-    'beans on toast',
-    'cheeseburger',
-    'battered mars bar',
-    'crisp butty',
-    'yorkshire pudding',
-    'wiener schnitzel',
-    'sauerkraut mit ei',
-    'salad',
-    'onion soup',
-    'bak choi',
-    'avacado maki',
-    'noodles algarabia maki',
-    'sausage algarabia maki',
-    'beans on toast algarabia maki',
-    'cheeseburger algarabia maki',
-    'battered mars bar algarabia maki',
-    'crisp butty algarabia maki',
-    'yorkshire pudding algarabia maki',
-    'wiener schnitzel algarabia maki',
-    'sauerkraut mit ei algarabia maki',
-    'salad algarabia maki',
-    'onion soup algarabia maki',
-    'bak choi algarabia maki',
-    'avacado algarabia maki'
+  var names = [
+    'Pedro',
+    'Juan',
+    'Roberto',
+    'Adrian',
+    'Polo',
+    'Andrea',
+    'Julieta',
+    'Saul',
+    'Jose Luis',
+    'Rodrigo',
+    'Arturo',
+    'Jhonatan',
+    'Alex',
+    'David',
+    'Max',
+    'Alan',
+    'Antonio',
+    'Luis',
+    'Gerardo',
+    'Fernando',
+    'Gustavo',
+    'Daniel',
+    'Raymundo',
+    'Moises',
+    'Angel'
   ];
-  var sides = [
-    'with chips',
-    'a la king',
-    'drizzled with cheese sauce',
-    'with a side salad',
-    'on toast',
-    'with ketchup',
-    'on a bed of cabbage',
-    'wrapped in streaky bacon',
-    'on a stick with cheese',
-    'in pitta bread',
-    'with chips algarabia maki',
-    'a la king algarabia maki',
-    'drizzled with cheese sauce algarabia maki',
-    'with a side salad algarabia maki',
-    'on toast algarabia maki',
-    'with ketchup algarabia maki',
-    'on a bed of cabbage algarabia maki',
-    'wrapped in streaky bacon algarabia maki',
-    'on a stick with cheese algarabia maki',
-    'in pitta bread algarabia maki'
+
+  var surnames = [
+    'Lopez',
+    'Gomez',
+    'Motta',
+    'Beck',
+    'Watson',
+    'Velbet',
+    'Pool',
+    'Bacon',
+    'Barriga',
+    'Dresden',
+    'Claverol',
+    'Mcloner',
+    'Perez',
+    'Lopez',
+    'Casillas',
+    'Marquez',
+    'Blanco',
+    'Raya',
+    'Suarez',
+    'Gutierrez'
+  ];
+
+  var jobs = [
+    'Abogado',
+    'Ingeniero',
+    'Contador',
+    'Vendedor',
+    'Vendedor Sr',
+    'Programador',
+    'Seguridad',
+    'Director',
+    'Gerente',
+    'Supervisor',
+    'Cheff',
+    'Comprador',
+    'Comprador Sr',
+    'RH'
   ];
 
   for (var i = 1; i <= 100; i++) {
-    var dish = dishes[Math.floor(Math.random() * dishes.length)];
-    var side = sides[Math.floor(Math.random() * sides.length)];
-    $scope.meals.push('meal ' + i + ': ' + dish + ' ' + side);
+    var name = names[Math.floor(Math.random() * names.length)];
+    var last_name = surnames[Math.floor(Math.random() * surnames.length)];
+
+    $scope.users.push({
+      id: '00' + i,
+      name: name + ' ' + last_name,
+      amount: (Math.random() + 100) * (Math.random() * (Math.random() * 1000)),
+      job: jobs[Math.floor(Math.random() * jobs.length)]
+    });
   }
 
   $scope.pageChangeHandler = function(num) {
-      console.log('meals page changed to ' + num);
+      console.log('users page changed to ' + num);
   };
 }
 

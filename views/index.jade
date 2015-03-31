@@ -2,5 +2,73 @@ extends layout
 
 block content
 
-  h1= title
-  p Welcome to #{title}
+  .container
+
+    .row
+      h1= title
+
+    .row
+      .col
+        p= description
+
+    br
+
+    .row
+      .col-xs-8
+        .my-controller(ng-controller="MyController")
+          p This is a example to paginate results of table
+
+          br
+
+          .row
+            .col-xs-7
+              h5.bold Usuarios
+
+            .col-xs-1
+              label.text-horizontal-center(for="search") Search
+            .col-xs-4
+              input(ng-model="filter_search" id="search" class="form-control" placeholder="Filter text")
+
+          br
+
+          div
+            div
+              .row
+                .col-xs-1.bold.center Id
+                .col-xs-5.bold Nombre
+                .col-xs-3.bold.center Posicion
+                .col-xs-3.bold.center Sueldo
+
+              .row(dir-paginate="user in users | filter:filter_search | itemsPerPage: pageSize" current-page="currentPage")
+                .col-xs-1.center.bold
+                  {{ user.id }}
+                .col-xs-5
+                  {{ user.name }}
+                .col-xs-3.center
+                  {{ user.job }}
+                .col-xs-3.right
+                  $ {{ user.amount | number: 2 }}
+
+          .row
+            .col-xs-4
+              h3 Meals Page: {{ currentPage }}
+              br
+              input(ng-model="currentPage" class="form-control" placeholder="Pagina")
+
+            .col-xs-4
+              label(for="search")
+                Search
+              input(ng-model="filter_search" id="search" class="form-control" placeholder="Filter text")
+
+            .col-xs-4
+              label(for="search")
+                items per page:
+              input(type="number" min="1" max="100" class="form-control" ng-model="pageSize")
+
+        .other-controller(ng-controller="OtherController")
+          small
+            this is in "OtherController"
+
+          .text-center
+            //
+              dir-pagination-controls(boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/pagination")
