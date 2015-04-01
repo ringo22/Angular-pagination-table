@@ -1,10 +1,10 @@
 # Angular-pagination-table
 
-h2. Getting started
+## Getting started
 
 First of all, You need have basic knowledges of angularJS.
 
-h3. Instalation
+## Instalation
 
 * "Download": git clone https://github.com/ringo22/Angular-pagination-table.git
 * Going to the project
