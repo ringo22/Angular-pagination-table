@@ -14,9 +14,9 @@ block content
     br
 
     .row
-      .col-xs-8
+      .col-xs-12
         .my-controller(ng-controller="MyController")
-          p This is a example to paginate results of table
+          p.text-horizontal-center This is a example to paginate results of table
 
           br
 
@@ -25,7 +25,7 @@ block content
               h5.bold Usuarios
 
             .col-xs-1
-              label.text-horizontal-center(for="search") Search
+              label.text-horizontal-center(for="search") Buscar:
             .col-xs-4
               input(ng-model="filter_search" id="search" class="form-control" placeholder="Filter text")
 
@@ -33,42 +33,42 @@ block content
 
           div
             div
-              .row
+              .row.table-header
                 .col-xs-1.bold.center Id
                 .col-xs-5.bold Nombre
                 .col-xs-3.bold.center Posicion
                 .col-xs-3.bold.center Sueldo
 
-              .row(dir-paginate="user in users | filter:filter_search | itemsPerPage: pageSize" current-page="currentPage")
-                .col-xs-1.center.bold
-                  {{ user.id }}
-                .col-xs-5
-                  {{ user.name }}
-                .col-xs-3.center
-                  {{ user.job }}
-                .col-xs-3.right
-                  $ {{ user.amount | number: 2 }}
+              .table-content
+                .row(dir-paginate="user in users | filter:filter_search | itemsPerPage: pageSize" current-page="currentPage")
+                  .col-xs-1.center.bold
+                    {{ user.id }}
+                  .col-xs-5
+                    {{ user.name }}
+                  .col-xs-3.center
+                    {{ user.job }}
+                  .col-xs-3.right
+                    $ {{ user.amount | number: 2 }}
+
+          br
 
           .row
-            .col-xs-4
-              h3 Meals Page: {{ currentPage }}
-              br
-              input(ng-model="currentPage" class="form-control" placeholder="Pagina")
+            .col-xs-2 
+              label Pagina:
+              p {{ currentPage | number: 0 }} de {{ totalPages | number: 0 }}
+            .col-xs-6.center
+              .pagination.center
+                ul.pagination.no-margin
+                  li
+                    a(ng-click="prevPage()" ng-hide="currentPage == 1") ‹
+                  li(ng-repeat="page in page_list")
+                    a(ng-click="selectPage(page)" ng-disabled="page == currentPage") {{ page }}
+                  li
+                    a(ng-click="nextPage()" ng-hide="currentPage == totalPages") ›
 
-            .col-xs-4
-              label(for="search")
-                Search
-              input(ng-model="filter_search" id="search" class="form-control" placeholder="Filter text")
-
-            .col-xs-4
-              label(for="search")
-                items per page:
-              input(type="number" min="1" max="100" class="form-control" ng-model="pageSize")
-
-        .other-controller(ng-controller="OtherController")
-          small
-            this is in "OtherController"
-
-          .text-center
-            //
-              dir-pagination-controls(boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="/pagination")
+            .col-xs-2
+              label(for="search") Page:
+              input(type="number" ng-model="currentPage" class="form-control" placeholder="Pagina")
+            .col-xs-2
+              label(for="search") Por pagina:
+              input(type="number" min="1" max="100" class="form-control" ng-model="pageSize" ng-keyup="pages()")

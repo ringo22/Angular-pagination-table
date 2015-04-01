@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -10,6 +10,10 @@ a {
 /*
   General class
 */
+
+.middle {
+	margin: 0 auto!important;
+}
 
 .center {
   text-align: center!important;
@@ -27,6 +31,38 @@ a {
   font-weight: bold!important;
 }
 
+.no-margin {
+	margin: 0!important;
+}
+
+.no-padding {
+	padding: 0!important;
+}
+
 .text-horizontal-center {
-  
+  height: 35px;
+  line-height: 35px;
+  margin: 0;
+  padding: 0;
+}
+
+.table-header {
+	background: #555;
+	color: #FFF;
+	padding: 10px;
+	margin: 0!important;
+}
+
+.table-content {
+	border: 1px solid #ddd;
+}
+
+.table-content .row {
+	margin: 0!important;
+	border-bottom: 1px solid #ddd;
+	padding: 10px 0;
+}
+
+.table-content .row:nth-child(2n) {
+  background: #f1f1f1;
 }
